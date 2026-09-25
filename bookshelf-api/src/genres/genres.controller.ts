@@ -37,7 +37,10 @@ export class GenresController {
   }
 
   @Get(':slug/books')
-  @ApiOperation({ summary: 'List books in a genre' })
+  @ApiOperation({
+    summary: 'List books in a genre',
+    description: 'Accepts the same filters and sorting as GET /books.',
+  })
   @ApiPaginatedResponse(BookSummaryDto)
   @ApiNotFoundResponse({ type: ErrorResponseDto })
   findBooks(@Param('slug') slug: string, @Query() query: BooksQueryDto) {

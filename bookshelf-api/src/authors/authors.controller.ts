@@ -24,7 +24,11 @@ export class AuthorsController {
   constructor(private readonly authorsService: AuthorsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Search authors' })
+  @ApiOperation({
+    summary: 'Search authors',
+    description:
+      'q matches the name, case-insensitive. Sort by name (default, ascending) or booksCount (default descending).',
+  })
   @ApiPaginatedResponse(AuthorListItemDto)
   findMany(@Query() query: AuthorsQueryDto) {
     return this.authorsService.findMany(query);
@@ -39,7 +43,10 @@ export class AuthorsController {
   }
 
   @Get(':id/books')
-  @ApiOperation({ summary: 'List books of an author' })
+  @ApiOperation({
+    summary: 'List books of an author',
+    description: 'Accepts the same filters and sorting as GET /books.',
+  })
   @ApiPaginatedResponse(BookSummaryDto)
   @ApiNotFoundResponse({ type: ErrorResponseDto })
   findBooks(

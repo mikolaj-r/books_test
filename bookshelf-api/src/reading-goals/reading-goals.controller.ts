@@ -49,7 +49,11 @@ export class ReadingGoalsController {
   @Put('me/reading-goals/:year')
   @ApiYearParam()
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Set the reading goal for a year' })
+  @ApiOperation({
+    summary: 'Set the reading goal for a year',
+    description:
+      'Creates or replaces the goal. booksRead counts library entries with status READ finished in that year.',
+  })
   @ApiOkResponse({ type: ReadingGoalDto })
   @ApiUnauthorizedResponse({ type: ErrorResponseDto })
   upsert(

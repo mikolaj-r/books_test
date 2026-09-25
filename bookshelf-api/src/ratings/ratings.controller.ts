@@ -70,7 +70,11 @@ export class RatingsController {
 
   @Public()
   @Get('books/:bookId/ratings')
-  @ApiOperation({ summary: 'List ratings and reviews of a book' })
+  @ApiOperation({
+    summary: 'List ratings and reviews of a book',
+    description:
+      'withReview=true returns only ratings with a review. Sort: newest (default), highest or lowest.',
+  })
   @ApiPaginatedResponse(RatingDto)
   findForBook(
     @Param('bookId', ParseUUIDPipe) bookId: string,

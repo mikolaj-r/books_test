@@ -14,13 +14,25 @@ export class LibraryEntryDto {
   @ApiProperty({ enum: ReadingStatus })
   status!: ReadingStatus;
 
-  @ApiProperty({ example: '2026-09-01', nullable: true, type: String })
+  @ApiProperty({
+    description: 'Date only (YYYY-MM-DD)',
+    example: '2026-09-01',
+    nullable: true,
+    type: String,
+  })
   startedAt!: string | null;
 
-  @ApiProperty({ example: '2026-09-20', nullable: true, type: String })
+  @ApiProperty({
+    description: 'Date only (YYYY-MM-DD)',
+    example: '2026-09-20',
+    nullable: true,
+    type: String,
+  })
   finishedAt!: string | null;
 
+  /** Last page read; cleared when the status becomes WANT_TO_READ */
   currentPage!: number | null;
+  /** Edition being read, when specified */
   edition!: LibraryEntryEditionDto | null;
   book!: BookSummaryDto;
   updatedAt!: Date;

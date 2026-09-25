@@ -42,14 +42,20 @@ export class UsersAdminController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @ApiOperation({ summary: 'List users (admin)' })
+  @ApiOperation({
+    summary: 'List users (admin)',
+    description: 'q searches in username and email, case-insensitive.',
+  })
   @ApiPaginatedResponse(UserPrivateDto)
   findMany(@Query() query: UsersQueryDto) {
     return this.usersService.findMany(query);
   }
 
   @Patch(':id/role')
-  @ApiOperation({ summary: 'Change user role (admin)' })
+  @ApiOperation({
+    summary: 'Change user role (admin)',
+    description: 'Admins cannot change their own role.',
+  })
   @ApiOkResponse({ type: UserPrivateDto })
   @ApiBadRequestResponse({ type: ErrorResponseDto })
   @ApiNotFoundResponse({ type: ErrorResponseDto })
@@ -63,7 +69,11 @@ export class UsersAdminController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOperation({ summary: 'Delete user (admin)' })
+  @ApiOperation({
+    summary: 'Delete user (admin)',
+    description:
+      'Removes the user together with tokens, ratings, library entries, shelves and reading goals. Admins cannot delete themselves.',
+  })
   @ApiNoContentResponse()
   @ApiBadRequestResponse({ type: ErrorResponseDto })
   @ApiNotFoundResponse({ type: ErrorResponseDto })

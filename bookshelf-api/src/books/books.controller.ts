@@ -26,7 +26,11 @@ export class BooksController {
 
   @Public()
   @Get()
-  @ApiOperation({ summary: 'Search and browse books' })
+  @ApiOperation({
+    summary: 'Search and browse books',
+    description:
+      'Filters: q (title or author name), genre (slug), author (id), yearFrom/yearTo (first publish year), minRating (average of user ratings). Sort by popularity (Open Library ratings count, default), averageRating, ratingsCount, firstPublishYear, title or createdAt.',
+  })
   @ApiPaginatedResponse(BookSummaryDto)
   findMany(@Query() query: BooksQueryDto) {
     return this.booksService.findMany(query);

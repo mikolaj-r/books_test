@@ -40,7 +40,11 @@ export class AuthController {
   @Public()
   @UseGuards(ThrottlerGuard)
   @Post('register')
-  @ApiOperation({ summary: 'Register a new user and issue tokens' })
+  @ApiOperation({
+    summary: 'Register a new user and issue tokens',
+    description:
+      'Email and username are stored in lower case. Limited to 10 requests per minute per IP.',
+  })
   @ApiCreatedResponse({ type: AuthResponseDto })
   @ApiConflictResponse({ type: ErrorResponseDto })
   @ApiTooManyRequestsResponse({ type: ErrorResponseDto })
@@ -52,7 +56,11 @@ export class AuthController {
   @UseGuards(ThrottlerGuard)
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Log in with email and password' })
+  @ApiOperation({
+    summary: 'Log in with email and password',
+    description:
+      'Unknown email and wrong password return the same 401. Limited to 10 requests per minute per IP.',
+  })
   @ApiOkResponse({ type: AuthResponseDto })
   @ApiUnauthorizedResponse({ type: ErrorResponseDto })
   @ApiTooManyRequestsResponse({ type: ErrorResponseDto })

@@ -17,7 +17,11 @@ export class UsersController {
 
   @Public()
   @Get(':username')
-  @ApiOperation({ summary: 'Get a public user profile with statistics' })
+  @ApiOperation({
+    summary: 'Get a public user profile with statistics',
+    description:
+      'Never exposes the email; shelvesCount counts public shelves only.',
+  })
   @ApiOkResponse({ type: UserProfileDto })
   @ApiNotFoundResponse({ type: ErrorResponseDto })
   getProfile(@Param('username') username: string) {

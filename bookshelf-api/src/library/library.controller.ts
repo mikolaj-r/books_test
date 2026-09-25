@@ -69,7 +69,11 @@ export class LibraryController {
 
   @Get('me/library')
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'List own reading library' })
+  @ApiOperation({
+    summary: 'List own reading library',
+    description:
+      'Filter by status. Sort by updatedAt (default), finishedAt or title.',
+  })
   @ApiPaginatedResponse(LibraryEntryDto)
   @ApiUnauthorizedResponse({ type: ErrorResponseDto })
   findMine(@CurrentUser() user: AuthUser, @Query() query: LibraryQueryDto) {
