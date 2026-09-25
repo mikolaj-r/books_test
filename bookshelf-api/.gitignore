@@ -1,0 +1,29 @@
+# compiled output
+/dist
+/node_modules
+/build
+*.tsbuildinfo
+
+# generated Prisma client
+/src/generated
+
+# environment
+.env
+.env.*.local
+
+# OpenLibrary dumps and ETL scratch files
+/tmp
+*.txt.gz
+
+# logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / IDE
+.DS_Store
+/.idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
