@@ -10,6 +10,10 @@ import { DatabaseModule } from './database/database.module';
 import { EditionsModule } from './editions/editions.module';
 import { GenresModule } from './genres/genres.module';
 import { HealthModule } from './health/health.module';
+import { LibraryModule } from './library/library.module';
+import { RatingsModule } from './ratings/ratings.module';
+import { ReadingGoalsModule } from './reading-goals/reading-goals.module';
+import { ShelvesModule } from './shelves/shelves.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -23,6 +27,10 @@ import { UsersModule } from './users/users.module';
     AuthorsModule,
     EditionsModule,
     GenresModule,
+    RatingsModule,
+    LibraryModule,
+    ShelvesModule,
+    ReadingGoalsModule,
   ],
   providers: [{ provide: APP_FILTER, useClass: AllExceptionsFilter }],
 })
